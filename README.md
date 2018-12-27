@@ -1,6 +1,7 @@
 # xstitch
 ### Functions to assist with cross-stitch pattern generation
 
+**Under development**
 
 ### Installation
 ```
