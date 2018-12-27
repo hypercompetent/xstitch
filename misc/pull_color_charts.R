@@ -26,7 +26,7 @@ dmc_anchor_url <- "https://www.cyberstitchers.com/stitching_tools/floss_conversi
 
 dmc_urls <- paste0(dmc_anchor_url,"page",1:7,"of7/")
 
-dmc_colors <- map_dfr(subpage_urls,
+dmc_colors <- map_dfr(dmc_urls,
                       read_colors)
 
 dmc_colors <- dmc_colors %>%
