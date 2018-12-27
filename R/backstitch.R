@@ -412,14 +412,3 @@ stitch_lettering <- function(p, x,
                      y = y, yend = yend))
 
 }
-
-p <- ggplot() +
-  geom_point(data = iris,
-             aes(x = Sepal.Length,
-                 y = Petal.Length,
-                 color = Species))
-
-p %>%
-  stitch_lettering("Nice 150 irises!",
-                   anchor = c(4,6),
-                   scale = 0.1)

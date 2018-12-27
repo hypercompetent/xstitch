@@ -1,14 +1,15 @@
 Package: xstitch
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Cross-stitch pattern generation.
+Version: 0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Lucas",
+           family = "Graybuck",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "lucasgrayphd@gmail.com")
+Description: Functions for adding cross-stitch pattern conventions to ggplots.
+License: 
 Encoding: UTF-8
 LazyData: true
+Imports: ggplot2
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
