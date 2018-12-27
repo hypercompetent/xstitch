@@ -41,10 +41,10 @@ add_grid <- function(p,
   x_center <- floor(mean(x_range))
   y_center <- floor(mean(y_range))
 
-  x_maj <- floor(x_range / 10) * 10
+  x_maj <- round(x_range / 10) * 10
   x_min <- x_range + c(-1 * pad, pad)
 
-  y_maj <- floor(y_range / 10) * 10
+  y_maj <- round(y_range / 10) * 10
   y_min <- y_range + c(-1 * pad, pad)
 
   if(center_arrows) {
@@ -86,6 +86,6 @@ add_grid <- function(p,
                   y = y_min) +
     theme_bw(base_size = base_size,
              base_family = base_family) +
-    theme(panel.grid.major = element_line(color = "gray80", size = 0.2))
+    theme(panel.grid.major = element_line(color = "gray50", size = 0.2))
 
 }
