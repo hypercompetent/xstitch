@@ -27,7 +27,7 @@ names(volcano_df) <- c("x","y","value")
 # factor conversion for plotting
 volcano_df$value <- as.factor(volcano_df$value)
 
-p <- ggplot(vdf) +
+p <- ggplot(volcano_df) +
        geom_point(aes(x = x,
                       y = y, 
                       pch = value, 
