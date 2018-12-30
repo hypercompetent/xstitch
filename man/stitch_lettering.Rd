@@ -2,7 +2,7 @@
 % Please edit documentation in R/backstitch.R
 \name{stitch_lettering}
 \alias{stitch_lettering}
-\title{Stitch backstitch lettering into a ggplot2 object.}
+\title{Add backstitch lettering into a ggplot2 object.}
 \usage{
 stitch_lettering(p, x, anchor = c(0, 0), scale = 1, set = "simple")
 }
@@ -21,7 +21,7 @@ stitch_lettering(p, x, anchor = c(0, 0), scale = 1, set = "simple")
 A ggplot2 plot object with an added geom_segment() layer.
 }
 \description{
-Stitch backstitch lettering into a ggplot2 object.
+Add backstitch lettering into a ggplot2 object.
 }
 \examples{
 library(ggplot2)

@@ -96,8 +96,8 @@ backstitch_segments <- list(
                    yend = c(0,4)),
     W = data.frame(x    = c(0,1,2,2),
                    xend = c(0,0,1,2),
-                   y    = c(0,4,0,0),
-                   yend = c(4,0,4,4)),
+                   y    = c(0,2,0,0),
+                   yend = c(4,0,2,4)),
     X = data.frame(x    = c(0,0),
                    xend = c(2,2),
                    y    = c(4,0),
@@ -372,7 +372,7 @@ backstitch_join <- function(x,
 }
 
 
-#' Stitch backstitch lettering into a ggplot2 object.
+#' Add backstitch lettering into a ggplot2 object.
 #'
 #' @param p The ggplot2 plot to use.
 #' @param x A character vector with the phrase to add to the plot.

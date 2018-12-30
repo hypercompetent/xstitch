@@ -1,4 +1,3 @@
-
 #' Add gridding, arrows, and plotting theme for a cross-stitch plot
 #'
 #' @param p The plot object to use.
