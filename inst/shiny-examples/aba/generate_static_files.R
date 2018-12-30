@@ -43,7 +43,8 @@ merged_ont <- res %>%
   unique()
 
 anno_arr <- aba_get_annotation_array()
-merged_arr <- array(res$merge_id[match(anno_arr, res$id)], dim = array_dims)
+merged_arr <- array(res$merge_id[match(anno_arr, res$id)], dim = array_dims) %>%
+  aba_symmetrize_array()
 
 saveRDS(merged_arr,"inst/shiny-examples/aba/aba_merged_annotation_id_array.RData")
 saveRDS(merged_ont,"inst/shiny-examples/aba/aba_merged_annotation_df.RData")
