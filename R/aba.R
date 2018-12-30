@@ -357,7 +357,7 @@ aba_melt_2d <- function(arr,
 #' @export
 #'
 aba_symmetrize_array <- function(arr,
-                                  fun = "none") {
+                                 fun = "none") {
   if(fun == "none") {
     arr
   } else if(fun == "mean") {

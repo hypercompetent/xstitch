@@ -314,6 +314,9 @@ backstitch_segments <- list(
                         xend = c(0,2,1,2,2),
                         y    = c(1,2,1,2,0),
                         yend = c(2,2,0,1,1))
+  ),
+  italic = list(
+
   )
 
 )
