@@ -5,7 +5,7 @@
 
 ### Installation
 ```
-if(!"devtools" %in% installed_packages()) {
+if(!"devtools" %in% installed.packages()) {
   install.packages("devtools")
 }
 
