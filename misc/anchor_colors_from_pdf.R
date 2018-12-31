@@ -57,85 +57,6 @@ png::writePNG(px, test.png)
 # This won't be consistent across pages because the swatch positions are a bit different
 # on each. ugh.
 
-extract_swatch <- function(arr, xmin, xmax, ymin, ymax) {
-  n <- length(xmin:xmax) * length(ymin:ymax)
-  res <- matrix(0, ncol = 3, nrow = n)
-  res[,1] <- as.numeric(arr[1, xmin:xmax, ymin:ymax])
-  res[,2] <- as.numeric(arr[2, xmin:xmax, ymin:ymax])
-  res[,3] <- as.numeric(arr[3, xmin:xmax, ymin:ymax])
-  colnames(res) <- c("r","g","b")
-  res
-}
-
-swatch_most_frequent_hex <- function(swatch_mat) {
-  u <- unique(swatch_mat)
-  uc <- apply(u, 1, function(x) {
-    sum(apply(swatch_mat, 1, function(y) {
-      identical(y,x)
-    }))
-  })
-  mfu <- u[which(uc == max(uc)),]
-
-  if(!is.null(dim(mfu))) {
-    mfu <- mfu[1,]
-  }
-
-  rgb(mfu["r"],
-      mfu["g"],
-      mfu["b"],
-      maxColorValue = 255)
-}
-
-swatch_median_hex <- function(swatch_mat) {
-  sums <- rowSums(swatch_mat)
-  sums_med <- median(sums)
-  if(!sums_med %in% sums) {
-    med_diffs <- abs(sums_med - sums)
-    sums_med <- sums[which(med_diffs == min(med_diffs))]
-  }
-
-  med_mat <- swatch_mat[which(sums %in% sums_med),,drop = FALSE]
-
-  r <- floor(median(med_mat[,"r"]))
-  g <- floor(median(med_mat[,"g"]))
-  b <- floor(median(med_mat[,"b"]))
-
-  rgb(r, g, b, maxColorValue = 255)
-}
-
-swatch_min_hex <- function(swatch_mat) {
-  sums <- rowSums(swatch_mat)
-  sums_min <- min(sums)
-
-  min_mat <- swatch_mat[which(sums == sums_min),,drop = FALSE]
-
-  r <- floor(median(min_mat[,"r"]))
-  g <- floor(median(min_mat[,"g"]))
-  b <- floor(median(min_mat[,"b"]))
-
-  rgb(r, g, b, maxColorValue = 255)
-}
-
-swatch_max_hex <- function(swatch_mat) {
-  sums <- rowSums(swatch_mat)
-  sums_max <- max(sums)
-
-  max_mat <- swatch_mat[which(sums == sums_max),,drop = FALSE]
-
-  r <- floor(median(max_mat[,"r"]))
-  g <- floor(median(max_mat[,"g"]))
-  b <- floor(median(max_mat[,"b"]))
-
-  rgb(r, g, b, maxColorValue = 255)
-}
-
-swatch_filter_value <- function(swatch_mat,
-                                prop = 0.3) {
-  swatch_hsv <- rgb2hsv(t(swatch_mat))
-  cutoff <- quantile(swatch_hsv["v",], probs = prop)
-  keep <- swatch_hsv["v",] >= cutoff
-  swatch_mat[keep,]
-}
 
 sw1 <- extract_swatch(p2, 313, 313 + sw_w, 148, 148 + sw_h)
 # filtering to a hsv value >= 0.5 of what's displayed
@@ -380,16 +301,6 @@ anchor_colors <- anchor_colors %>%
 r_rgb <- col2rgb(colors(distinct = TRUE))
 colnames(r_rgb) <- colors(distinct = TRUE)
 
-nearest_r_color <- function(hexes) {
-  map_chr(hexes,
-          function(hex) {
-            diffs <- apply(r_rgb, 2, function(x) {
-              sum(abs(x - col2rgb(hex)))
-            })
-            colnames(r_rgb)[which(diffs == min(diffs))][1]
-          })
-
-}
 
 anchor_colors$r_color <- nearest_r_color(anchor_colors$med_color)
 
