@@ -381,13 +381,13 @@ r_rgb <- col2rgb(colors(distinct = TRUE))
 colnames(r_rgb) <- colors(distinct = TRUE)
 
 nearest_r_color <- function(hexes) {
-  r_color_match <- map_chr(hexes,
-                           function(hex) {
-                             diffs <- apply(r_rgb, 2, function(x) {
-                               sum(abs(x - col2rgb(hex)))
-                             })
-                             colnames(r_rgb)[which(diffs == min(diffs))][1]
-                           })
+  map_chr(hexes,
+          function(hex) {
+            diffs <- apply(r_rgb, 2, function(x) {
+              sum(abs(x - col2rgb(hex)))
+            })
+            colnames(r_rgb)[which(diffs == min(diffs))][1]
+          })
 
 }
 
