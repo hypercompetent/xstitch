@@ -50,7 +50,7 @@ final_colors <- threadchart_colors %>%
   mutate(source = sub("DesignsbySick","DesignsBySick", source)) %>%
   mutate(source = sub(" - Embroidex - "," Embroidex", source))
 
-final_colors <- threadchart_colors %>%
+final_colors <- final_colors %>%
   mutate(r_color = nearest_r_color(color))
 
 # how close are these to what I parsed from the Anchor pdf?
