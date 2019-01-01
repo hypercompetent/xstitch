@@ -2,6 +2,7 @@ library(pdftools)
 library(dplyr)
 library(purrr)
 options(stringsAsFactors = F)
+source("R/swatches.R")
 
 pdf_file <- "misc/yarn_shadecard_anchor stranded cotton5c05c434898ea.pdf"
 

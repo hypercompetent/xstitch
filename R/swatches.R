@@ -143,6 +143,9 @@ swatch_filter_value <- function(swatch_mat,
 #' @export
 #'
 nearest_r_color <- function(hexes) {
+  r_rgb <- col2rgb(colors(distinct = TRUE))
+  colnames(r_rgb) <- colors(distinct = TRUE)
+
   map_chr(hexes,
           function(hex) {
             diffs <- apply(r_rgb, 2, function(x) {
