@@ -89,3 +89,50 @@ walk(sources, function(x) {
 
   write.csv(source_colors, out_name, row.names = F)
 })
+
+col2ab <- function(hexes) {
+  rgbs <- col2rgb(hexes) / 255
+  alphas <- rgbs["red",] - 0.5 * (rgbs["green",] + rgbs["blue",])
+  betas <- sqrt(3) / 2 * (rgbs["green",] - rgbs["blue",])
+  return(data.frame(color = hexes,
+                    alpha = alphas,
+                    beta = betas))
+}
+
+plot_colorspace <- function(hexes,
+                            show_pures = TRUE) {
+
+  data <- col2ab(hexes)
+
+  p <- ggplot(data) +
+    geom_point(aes(x = alpha,
+                   y = beta,
+                   color = color),
+               size = 2) +
+    scale_color_identity() +
+    theme_classic() +
+    scale_x_continuous(limits = c(-1.1,1.1)) +
+    scale_y_continuous(limits = c(-1.1,1.1))
+
+  if(show_pures) {
+    pure_colors <- c("#FF0000","#FFFF00","#00FF00","#00FFFF","#0000FF","#FF00FF")
+    pure_df <- col2ab(pure_colors)
+    p <- p + geom_point(data = pure_df,
+                        aes(x = alpha,
+                            y = beta,
+                            fill = color),
+                        size = 4,
+                        pch = 21) +
+      scale_fill_identity()
+  }
+
+  return(p)
+}
+
+r_rgb <- col2rgb(colors(distinct = TRUE))
+colnames(r_rgb) <- colors(distinct = TRUE)
+r_hex <- map_chr(1:ncol(r_rgb), function(x) {v <- r_rgb[,x]; rgb(v[1],v[2],v[3], maxColorValue = 255)})
+
+plot_colorspace(r_hex)
+
+plot_colorspace(final_colors$color[final_colors$source == "FuFu Polyester"])

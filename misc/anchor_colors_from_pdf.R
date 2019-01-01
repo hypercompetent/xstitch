@@ -299,10 +299,6 @@ anchor_colors$id <- str_pad(anchor_colors$id,
 anchor_colors <- anchor_colors %>%
   select(-page, -pcol, -coln)
 
-r_rgb <- col2rgb(colors(distinct = TRUE))
-colnames(r_rgb) <- colors(distinct = TRUE)
-
-
 anchor_colors$r_color <- nearest_r_color(anchor_colors$med_color)
 
 write.csv(anchor_colors,
