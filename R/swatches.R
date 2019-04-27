@@ -186,7 +186,7 @@ col2ab <- function(hexes) {
 colorspace_plot <- function(palette,
                             show_pures = TRUE) {
 
-  data <- col2ab(colorspace_plot)
+  data <- col2ab(palette)
 
   p <- ggplot(data) +
     geom_point(aes(x = alpha,
